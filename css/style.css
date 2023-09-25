@@ -1,6 +1,6 @@
 a {
 	font-family: "Roboto", sans-serif;
-	color: black;
+	color: antiquewhite;
 }
 
 a:hover {
@@ -8,7 +8,7 @@ a:hover {
 }
 
 li {
-	display: inline;
+	display: block;
 	float: right;
 	position: sticky;
 }
@@ -23,8 +23,37 @@ li a:hover {
 	color: gray;
 }
 
-#text {
-	font-size: 15px;
+img {
+	display: inline-block;
+	vertical-align: top;
+  	margin-left: auto;
+  	margin-right: auto;
+	align-items: center;
+	border: 1px solid ghostwhite;
 }
+
+p {
+	display: inline-block;
+	vertical-align: top;
+	color: ghostwhite;
+	font-size: 13px;
+	font-family: "Roboto", sans-serif;
+}
+
+input {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	align-items: center;
+}
+
+.center {
+	margin: auto;
+	margin-top: 5%;
+	width: 40%;
+	color: ghostwhite;
+}
+
+
 
 
