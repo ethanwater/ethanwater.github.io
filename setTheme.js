@@ -1,4 +1,5 @@
 const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+var text = document.getElementById('text');
 
 function deviceTheme() {
 	if (darkThemeMq.matches) {
@@ -6,5 +7,9 @@ function deviceTheme() {
 	} else {
 		document.body.style.backgroundColor = "white";
 	}
+}
+
+function pageTransition() {
+	//document.body.style.backgroundColor = "black";
 }
 
