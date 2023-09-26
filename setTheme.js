@@ -8,8 +8,3 @@ function deviceTheme() {
 		document.body.style.backgroundColor = "white";
 	}
 }
-
-function pageTransition() {
-	//document.body.style.backgroundColor = "black";
-}
-
