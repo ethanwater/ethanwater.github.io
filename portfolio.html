@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  </head>
+
+  <body id="body">
+		<div class="header">
+			<p class="title">ETHAN<br>WATER</p>
+			<ul class="nav">
+					<li>projects</li>
+					<li>about me</li>
+					<li>resume/cv</li>
+			</ul>
+		</div>
+
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/vivian.jpg" width="400px">
+				</div>
+				<div class="name">
+					<p style="font-weight: bold;">VIVIAN</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Cloud-based application aiming to streamline
+						<br>the analysis of local cloud deployments.
+						<br>Powered by Kubernetes and Googles ServiceWeaver
+						<br>web framework. I was inspired to do this after 
+						<br>being unsatisfied with the other tools out there.
+						<br>
+						<br>(in development)
+						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+					</p>   
+				</div>
+			</div>
+
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/vivian.jpg" width="400px">
+				</div>
+				<div class="name">
+					<p style="font-weight: bold;">VIVIAN</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Cloud-based application aiming to streamline
+						<br>the analysis of local cloud deployments.
+						<br>Powered by Kubernetes and Googles ServiceWeaver
+						<br>web framework. I was inspired to do this after 
+						<br>being unsatisfied with the other tools out there.
+						<br>
+						<br>(in development)
+						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+					</p>   
+				</div>
+			</div>
+
+  </body>
+
+	<script>
+			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+			if (systemTheme.matches) {
+				body.style.backgroundColor = "black";
+				body.style.color = "white";
+			} else {
+				body.style.backgroundColor = "#DBCDB3";
+				body.style.color = "black";
+			}
+	</script>

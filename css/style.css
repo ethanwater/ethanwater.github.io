@@ -1,57 +1,86 @@
-a {
+body {
 	font-family: "Roboto", sans-serif;
-	color: antiquewhite;
 }
 
-a:hover {
-	color: gray;
+a {
+	color: white
 }
 
-li {
-	display: block;
-	float: right;
-	position: sticky;
+.header {
+	top: 0;
 }
 
-li a {
-  text-align: center;
-  padding: 10px 10px;
-  text-decoration: none;
+.title {
+	margin-top: 0%;
+	float: left;
+	width: 82%;
+	font-size: 20px;
 }
 
-li a:hover {
-	color: gray;
+ul.nav {
+	list-style: none;
 }
 
-img {
+ul.nav li {
 	display: inline-block;
-	vertical-align: top;
-  	margin-left: auto;
-  	margin-right: auto;
-	align-items: center;
-	border: 1px solid ghostwhite;
+	margin-left: 1%;
+}
+
+.project {
+	margin-bottom: 2.5%;
+	display: inline-block;
+	width: 50%;
+	overflow: visible;
+	margin-top: 5%;
+	left: 25%;
+	transition: 1s;
+	position: relative;
+}
+
+.project:hover {
+	transform: scale(1.1);
+	box-shadow: 0px 35px rgba(0, 0, 0, 0.05);
+}
+
+.name {
+	margin-left: 58%;
+	margin-bottom: -3%;
+	animation: fade-in 1s ease-in;
+}
+
+.description {
+	float: right;
+	animation: fade-in 4s ease-in;
+}
+
+.preview {
+	display: flex;
+	float: left;
+	animation: fade-in 1s ease-in;
 }
 
 p {
-	display: inline-block;
-	vertical-align: top;
-	color: ghostwhite;
 	font-size: 13px;
-	font-family: "Roboto", sans-serif;
 }
 
-input {
-	display: inline-block;
-	margin-left: auto;
-	margin-right: auto;
-	align-items: center;
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 100;
+	}
 }
 
-.center {
-	margin: auto;
-	margin-top: 5%;
-	width: 40%;
-	color: ghostwhite;
+@keyframes scale-in {
+	0% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
 
 
