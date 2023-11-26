@@ -37,12 +37,8 @@ ul.nav li {
 	overflow: visible;
 	margin-left: 5%;
 	transition: 1s;
+	animation: fade-in 0.5s ease-in;
 	position: relative;
-}
-
-.project:hover {
-	transform: scale(1.1);
-	box-shadow: 0px 35px rgba(0, 0, 0, 0.05);
 }
 
 .name {
@@ -50,7 +46,10 @@ ul.nav li {
 	display: inline;
 	margin-bottom: -3%;
 	margin-right: 5%;
-	animation: fade-in 1s ease-in;
+}
+
+.languages {
+	transition: 1s;
 }
 
 .languageTag {
@@ -68,14 +67,15 @@ ul.nav li {
 }
 
 .description {
-	transition: opacity 2s;
+	pointer-events: none;
+	transition: opacity 1s, transform 1s;
 	opacity: 0;
 }
 
 .preview {
 	display: flex;
-	animation: fade-in 1s ease-in;
 	margin-bottom: 5%;
+	transition: 1s;
 }
 
 p {
@@ -85,10 +85,12 @@ p {
 @keyframes fade-in {
 	0% {
 		opacity: 0;
+		pointer-events: none;
 	}
 
 	100% {
 		opacity: 100;
+		pointer-events: all;
 	}
 }
 

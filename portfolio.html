@@ -11,7 +11,7 @@
 
   <body id="body">
 		<div class="header">
-			<p class="title">ethan</p>
+			<p class="title">ethanwater</p>
 			<ul class="nav">
 					<li>about me</li>
 					<li>resume/cv</li>
@@ -20,10 +20,10 @@
 		<div class="projects">
 			<div class="project">   
 				<div class="preview">
-					<img src="assets/vivian.jpg" width="400px">
+					<img src="assets/vivian.jpg" width="400px"height="229px">
 				</div>
 				<p class="name">VIVIAN</p>
-				<div id="languages">
+				<div class="languages">
 					<p class="languageTag" style="color: #1e90ff;">•</p>
 					<p class="language">Go</p>
 					<p class="languageTag" style="color: yellow;">•</p>
@@ -47,10 +47,10 @@
 
 			<div class="project">   
 				<div class="preview">
-					<img src="assets/pong.jpg" width="400px">
+					<img src="assets/pong.jpg" width="400px" height="229px">
 				</div>
 				<p class="name">PONG</p>
-				<div id="languages">
+				<div class="languages">
 					<p class="languageTag" style="color: #a0522d;">•</p>
 					<p class="language">Rust</p>
 				</div>
@@ -59,7 +59,7 @@
 						<br>Written in Rust, i've classic game of recreated
 						<br>the classic game of pong. It features two modes:
 						<br>
-						<br>-Single Player (against AI)
+						<br>-Single Player (against evolving AI)
 						<br>-Two Player
 						<br>
 						<br>(archived)
@@ -73,7 +73,7 @@
 					<img src="assets/organize.png" width="400px" height="229px">
 				</div>
 				<p class="name">ORGANIZE.GO</p>
-				<div id="languages">
+				<div class="languages">
 					<p class="languageTag" style="color: #1e90ff;">•</p>
 					<p class="language">Go</p>
 				</div>
@@ -85,7 +85,7 @@
 						<br>directories, matches file extensions, and allows
 						<br>deep scanning for statistics and insights.
 						<br>
-						<br>(in development)
+						<br>(archived)
 						<br><a href="https://github.com/ethanwater/organize.go">repository</a>
 					</p>   
 				</div>
@@ -104,33 +104,35 @@
 			}
 			
 			const projects = document.getElementsByClassName("project");
+			const previews = document.getElementsByClassName("preview");
 			const descriptions = document.getElementsByClassName("description");
+			
 			for (let i = 0; i < projects.length; i++) {
-				focus(projects[i], descriptions[i]);
+				focus(projects[i], descriptions[i], previews[i]);
 			}
 
-
-			function focus(project, description) {
-				project.onmouseover = function () {
-    	    for (let i = 0; i < projects.length; i++) {
-    	        if (projects[i] !== project) {
-    	            projects[i].style.opacity = 0.5;
-							} else {
-								description.style.opacity = 1;
-							}
-    	    }
-    		}
-    		project.onmouseout = function () {
-    	    for (let i = 0; i < projects.length; i++) {
-    	        projects[i].style.opacity = 1;
-							if (projects[i] == project) {
-								description.style.opacity = 0;
-							}
-    	    	}
+			function focus(project, description, preview) {
+				preview.onmouseover = function () {
+    	    		for (let i = 0; i < projects.length; i++) {
+    	      		  	if (projects[i] !== project) {
+    	        	    	projects[i].style.opacity = 0.5;
+						} else {
+							description.style.opacity = 1;
+							description.style.pointerEvents = "all";
+							project.style.transform = "scale(1.1)";
+						}	
+    	  	  		}
+    			}
+				
+				project.onmouseleave = function () {
+	    	 	   	for (let i = 0; i < projects.length; i++) {
+ 	 	  	 	       	projects[i].style.opacity = 1;
+						if (projects[i] == project) {
+							description.style.opacity = 0;
+							description.style.pointerEvents = "none";
+							project.style.transform = "scale(1)";
+						}
+    	 		   	}
     			}	
 			}
-			
-
-
-
 	</script>
