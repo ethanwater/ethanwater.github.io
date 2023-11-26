@@ -13,7 +13,7 @@ a {
 .title {
 	margin-top: 0%;
 	float: left;
-	width: 82%;
+	width: 87%;
 	font-size: 20px;
 }
 
@@ -26,13 +26,16 @@ ul.nav li {
 	margin-left: 1%;
 }
 
+.projects {
+	margin-left: -2.35%;
+}
+
 .project {
+	margin-top: 5%;
 	margin-bottom: 2.5%;
 	display: inline-block;
-	width: 50%;
 	overflow: visible;
-	margin-top: 5%;
-	left: 25%;
+	margin-left: 5%;
 	transition: 1s;
 	position: relative;
 }
@@ -43,20 +46,36 @@ ul.nav li {
 }
 
 .name {
-	margin-left: 58%;
+	font-weight: bold;
+	display: inline;
 	margin-bottom: -3%;
+	margin-right: 5%;
 	animation: fade-in 1s ease-in;
 }
 
+.languageTag {
+	font-weight: bold;
+	font-size: 25px;
+	display: inline;
+	writing-mode: vertical-rl;
+	margin-left: -3%;
+	margin-right: -2%;
+}
+
+.language {
+	margin-right: 3%;
+	display: inline;
+}
+
 .description {
-	float: right;
-	animation: fade-in 4s ease-in;
+	transition: opacity 2s;
+	opacity: 0;
 }
 
 .preview {
 	display: flex;
-	float: left;
 	animation: fade-in 1s ease-in;
+	margin-bottom: 5%;
 }
 
 p {

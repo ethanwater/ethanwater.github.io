@@ -11,20 +11,25 @@
 
   <body id="body">
 		<div class="header">
-			<p class="title">ETHAN<br>WATER</p>
+			<p class="title">ethan</p>
 			<ul class="nav">
-					<li>projects</li>
 					<li>about me</li>
 					<li>resume/cv</li>
 			</ul>
 		</div>
-
+		<div class="projects">
 			<div class="project">   
 				<div class="preview">
 					<img src="assets/vivian.jpg" width="400px">
 				</div>
-				<div class="name">
-					<p style="font-weight: bold;">VIVIAN</p>
+				<p class="name">VIVIAN</p>
+				<div id="languages">
+					<p class="languageTag" style="color: #1e90ff;">•</p>
+					<p class="language">Go</p>
+					<p class="languageTag" style="color: yellow;">•</p>
+					<p class="language">JavaScript</p>
+					<p class="languageTag" style="color: purple;">•</p>
+					<p class="language">HTML/CSS</p>
 				</div>
 				<div class="description">
 					<p> 
@@ -42,34 +47,90 @@
 
 			<div class="project">   
 				<div class="preview">
-					<img src="assets/vivian.jpg" width="400px">
+					<img src="assets/pong.jpg" width="400px">
 				</div>
-				<div class="name">
-					<p style="font-weight: bold;">VIVIAN</p>
+				<p class="name">PONG</p>
+				<div id="languages">
+					<p class="languageTag" style="color: #a0522d;">•</p>
+					<p class="language">Rust</p>
 				</div>
 				<div class="description">
 					<p> 
-						<br>Cloud-based application aiming to streamline
-						<br>the analysis of local cloud deployments.
-						<br>Powered by Kubernetes and Googles ServiceWeaver
-						<br>web framework. I was inspired to do this after 
-						<br>being unsatisfied with the other tools out there.
+						<br>Written in Rust, i've classic game of recreated
+						<br>the classic game of pong. It features two modes:
 						<br>
-						<br>(in development)
-						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+						<br>-Single Player (against AI)
+						<br>-Two Player
+						<br>
+						<br>(archived)
+						<br><a href="https://github.com/ethanwater/pong">repository</a>
 					</p>   
 				</div>
 			</div>
 
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/organize.png" width="400px" height="229px">
+				</div>
+				<p class="name">ORGANIZE.GO</p>
+				<div id="languages">
+					<p class="languageTag" style="color: #1e90ff;">•</p>
+					<p class="language">Go</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Safely organize and manage files in one click:
+						<br>it logs past actions, revert changes, 
+						<br>and tests the organization method. The code scans 
+						<br>directories, matches file extensions, and allows
+						<br>deep scanning for statistics and insights.
+						<br>
+						<br>(in development)
+						<br><a href="https://github.com/ethanwater/organize.go">repository</a>
+					</p>   
+				</div>
+			</div>
+		</div>
   </body>
 
 	<script>
 			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 			if (systemTheme.matches) {
-				body.style.backgroundColor = "black";
-				body.style.color = "white";
+				document.body.style.backgroundColor = "black";
+				document.body.style.color = "white";
 			} else {
-				body.style.backgroundColor = "#DBCDB3";
-				body.style.color = "black";
+				document.body.style.backgroundColor = "#DBCDB3";
+				document.body.style.color = "black";
 			}
+			
+			const projects = document.getElementsByClassName("project");
+			const descriptions = document.getElementsByClassName("description");
+			for (let i = 0; i < projects.length; i++) {
+				focus(projects[i], descriptions[i]);
+			}
+
+
+			function focus(project, description) {
+				project.onmouseover = function () {
+    	    for (let i = 0; i < projects.length; i++) {
+    	        if (projects[i] !== project) {
+    	            projects[i].style.opacity = 0.5;
+							} else {
+								description.style.opacity = 1;
+							}
+    	    }
+    		}
+    		project.onmouseout = function () {
+    	    for (let i = 0; i < projects.length; i++) {
+    	        projects[i].style.opacity = 1;
+							if (projects[i] == project) {
+								description.style.opacity = 0;
+							}
+    	    	}
+    			}	
+			}
+			
+
+
+
 	</script>
