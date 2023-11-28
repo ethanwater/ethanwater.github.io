@@ -32,14 +32,12 @@
 				</div>
 				<div class="description">
 					<p> 
-						<br>Written in Rust, i've classic game of recreated
-						<br>the classic game of pong. It features two modes:
-						<br>
-						<br>-Single Player (against evolving AI)
-						<br>-Two Player
+						<br>Various neural networks designed towards data
+						<br>analysis and pattern recognition.
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/pong">repository</a>
+						<br><br>
 					</p>   
 				</div>
 			</div>
@@ -69,6 +67,7 @@
 						<br>
 						<br>(in development)
 						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+						<br><br>
 					</p>   
 				</div>
 			</div>
@@ -84,14 +83,12 @@
 				</div>
 				<div class="description">
 					<p> 
-						<br>Cloud-based application built to streamline
-						<br>live metrics and analyses of cloud deployments.
-						<br>Powered by Kubernetes and the ServiceWeaver
-						<br>web framework. I was inspired to do this after 
-						<br>being unsatisfied with the current tools out there.
+						<br>Physics and movement algorithms for a future
+						<br>passion project.
 						<br>
 						<br>(in development)
 						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+						<br><br>
 					</p>   
 				</div>
 			</div>
@@ -107,14 +104,15 @@
 				</div>
 				<div class="description">
 					<p> 
-						<br>Written in Rust, i've classic game of recreated
-						<br>the classic game of pong. It features two modes:
+						<br>Written in Rust, i've recreated the classic 
+						<br>game of pong. It features two modes:
 						<br>
 						<br>-Single Player (against evolving AI)
 						<br>-Two Player
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/pong">repository</a>
+						<br><br>
 					</p>   
 				</div>
 			</div>
@@ -130,14 +128,12 @@
 				</div>
 				<div class="description">
 					<p> 
-						<br>Safely organize and manage files in one click:
-						<br>it logs past actions, revert changes, 
-						<br>and tests the organization method. The code scans 
-						<br>directories, matches file extensions, and allows
-						<br>deep scanning for statistics and insights.
+						<br>Safely organize and manage files via custom
+						<br>user configuration.
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/organize.go">repository</a>
+						<br><br>
 					</p>   
 				</div>
 			</div>
@@ -163,6 +159,7 @@
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/organize.go">repository</a>
+						<br><br>
 					</p>   
 				</div>
 
@@ -191,7 +188,6 @@
 
 			function focus(project, description, preview) {
 				preview.onmouseover = function () {
-					project.classList.add('centerElement');
     	    		for (let i = 0; i < projects.length; i++) {
     	      		  	if (projects[i] !== project) {
     	        	    	projects[i].style.opacity = 0.25;
@@ -199,7 +195,8 @@
 							description.style.opacity = 1;
 							description.style.pointerEvents = "all";
 							project.style.transform = "scale(1.1)";
-							description.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+						//	description.scrollIntoView({ behavior: "smooth", block: "end",
+						//		inline: "center" });
 						}	
     	  	  		}
     			}
