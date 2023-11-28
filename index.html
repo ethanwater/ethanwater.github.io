@@ -14,7 +14,7 @@
 			<p class="title">ethanwater <span class="position">software engineer</span></p>
 			<ul class="nav">
 				<li><a href>about me</a></li>
-				<li><a href>resume/cv</a></li>
+				<li><a href="resume.html">resume</a></li>
 			</ul>
 		</div>
 
@@ -29,11 +29,13 @@
 					<p class="language">Python</p>
 					<p class="languageTag" style="color: lavender;">•</p>
 					<p class="language">Jupyter Notebook</p>
+					<p class="languageTag" style="color: red;">•</p>
+					<p class="language">Tensorflow</p>
 				</div>
 				<div class="description">
 					<p> 
-						<br>Various neural networks designed towards data
-						<br>analysis and pattern recognition.
+						<br>Various reinforcement-based neural networks to analyze
+						<br>gathered data and image recognition.
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/neural-networks">repository</a>
@@ -54,16 +56,16 @@
 					<p class="language">JavaScript</p>
 					<p class="languageTag" style="color: orange;">•</p>
 					<p class="language">Weaver</p>
+					<p class="languageTag" style="color: red;">•</p>
+					<p class="language">Kubernetes</p>
 					<p class="languageTag" style="color: purple;">•</p>
 					<p class="language">HTML/CSS</p>
 				</div>
 				<div class="description">
 					<p> 
-						<br>Cloud-based application built to streamline
-						<br>live metrics and analyses of cloud deployments.
-						<br>Powered by Kubernetes and the ServiceWeaver
-						<br>web framework. I was inspired to do this after 
-						<br>being unsatisfied with the current tools out there.
+						<br>Cloud application built to streamline the analysis of cloud 
+						<br>deployments. I was inspired to do this after being unsatisfied
+						<br>with the current tools out there.
 						<br>
 						<br>(in development)
 						<br><a href="https://github.com/ethanwater/vivian">repository</a>
@@ -83,8 +85,8 @@
 				</div>
 				<div class="description">
 					<p> 
-						<br>Physics and movement algorithms for a future
-						<br>passion project.
+						<br>Physics and movement algorithms for a future passion
+						<br>project.
 						<br>
 						<br>(in development)
 						<br><a href="https://github.com/ethanwater/PROTOTYPE-RAVEN">repository</a>
@@ -159,17 +161,15 @@
 			}
 
 			function focus(project, description, preview) {
-				preview.onmouseover = function () {
+				project.onmouseover = function () {
     	    		for (let i = 0; i < projects.length; i++) {
     	      		  	if (projects[i] !== project) {
+							projects[i].style.pointerEvents = "none";
     	        	    	projects[i].style.opacity = 0.25;
 						} else {
 							description.style.opacity = 1;
 							description.style.pointerEvents = "all";
 							project.style.transform = "scale(1.1)";
-						//	description.scrollIntoView({ behavior: "smooth", block: "end",
-					
-						//		inline: "center" });
 						}	
     	  	  		}
     			}
@@ -177,6 +177,7 @@
 				project.onmouseleave = function () {
 	    	 	   	for (let i = 0; i < projects.length; i++) {
  	 	  	 	       	projects[i].style.opacity = 1;
+						projects[i].style.pointerEvents = "all";
 						if (projects[i] == project) {
 							description.style.opacity = 0;
 							description.style.pointerEvents = "none";

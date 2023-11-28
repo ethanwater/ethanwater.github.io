@@ -8,6 +8,10 @@ a {
 	color: white;
 }
 
+.resume {
+	margin-left: 25%;
+}
+
 a:hover {
 	color: lightgray;
 }
@@ -51,8 +55,8 @@ ul.nav li {
 	transition: 1s;
 	animation: fade-in 0.5s ease-in;
 	position: relative;
+	pointer-events: all;
 }
-
 
 .name {
 	font-weight: bold;
