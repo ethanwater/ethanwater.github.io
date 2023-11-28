@@ -1,13 +1,25 @@
 body {
 	font-family: "Roboto", sans-serif;
+	background-color: black;
+	color: white;
 }
 
 a {
-	color: white
+	color: white;
+}
+
+a:hover {
+	color: lightgray;
 }
 
 .header {
+	position: sticky;
 	top: 0;
+	z-index: 999;
+}
+
+.position {
+	font-size: 12px;
 }
 
 .title {
@@ -41,6 +53,9 @@ ul.nav li {
 	position: relative;
 }
 
+.centerElement {
+}
+
 .name {
 	font-weight: bold;
 	display: inline;
@@ -67,15 +82,23 @@ ul.nav li {
 }
 
 .description {
+	position: absolute;
+	margin-top: 0;
+	display: inline-block;
 	pointer-events: none;
-	transition: opacity 1s, transform 1s;
 	opacity: 0;
+	transition: opacity 1s, transform 1s;
+	z-index: 999;
+	transform: translateY(-25px);
+	overflow-y: scroll;
 }
+
 
 .preview {
 	display: flex;
 	margin-bottom: 5%;
 	transition: 1s;
+	z-index: 9;
 }
 
 p {
@@ -93,6 +116,20 @@ p {
 		pointer-events: all;
 	}
 }
+
+@keyframes fade-out {
+	0% {
+		opacity: 100;
+		pointer-events: all;
+	}
+
+	100% {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+
 
 @keyframes scale-in {
 	0% {

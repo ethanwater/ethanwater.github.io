@@ -11,13 +11,91 @@
 
   <body id="body">
 		<div class="header">
-			<p class="title">ethanwater</p>
+			<p class="title">ethanwater <span class="position">software engineer</span></p>
 			<ul class="nav">
-					<li>about me</li>
-					<li>resume/cv</li>
+				<li><a href>about me</a></li>
+				<li><a href>resume/cv</a></li>
 			</ul>
 		</div>
+
 		<div class="projects">
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/machine.jpg" width="400px" height="229px">
+				</div>
+				<p class="name">NEURAL NETWORKS AND DATA ANALYSIS</p>
+				<div class="languages">
+					<p class="languageTag" style="color: #BFB9FA;">•</p>
+					<p class="language">Python</p>
+					<p class="languageTag" style="color: lavender;">•</p>
+					<p class="language">Jupyter Notebook</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Written in Rust, i've classic game of recreated
+						<br>the classic game of pong. It features two modes:
+						<br>
+						<br>-Single Player (against evolving AI)
+						<br>-Two Player
+						<br>
+						<br>(archived)
+						<br><a href="https://github.com/ethanwater/pong">repository</a>
+					</p>   
+				</div>
+			</div>
+
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/vivian.mov" width="400px"height="229px">
+				</div>
+				<p class="name">VIVIAN</p>
+				<div class="languages">
+					<p class="languageTag" style="color: #1e90ff;">•</p>
+					<p class="language">Go</p>
+					<p class="languageTag" style="color: yellow;">•</p>
+					<p class="language">JavaScript</p>
+					<p class="languageTag" style="color: orange;">•</p>
+					<p class="language">Weaver</p>
+					<p class="languageTag" style="color: purple;">•</p>
+					<p class="language">HTML/CSS</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Cloud-based application built to streamline
+						<br>live metrics and analyses of cloud deployments.
+						<br>Powered by Kubernetes and the ServiceWeaver
+						<br>web framework. I was inspired to do this after 
+						<br>being unsatisfied with the current tools out there.
+						<br>
+						<br>(in development)
+						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+					</p>   
+				</div>
+			</div>
+
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/raven.mov" width="400px"height="229px">
+				</div>
+				<p class="name">PROTOTYPE RAVEN</p>
+				<div class="languages">
+					<p class="languageTag" style="color: green;">•</p>
+					<p class="language">C#</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Cloud-based application built to streamline
+						<br>live metrics and analyses of cloud deployments.
+						<br>Powered by Kubernetes and the ServiceWeaver
+						<br>web framework. I was inspired to do this after 
+						<br>being unsatisfied with the current tools out there.
+						<br>
+						<br>(in development)
+						<br><a href="https://github.com/ethanwater/vivian">repository</a>
+					</p>   
+				</div>
+			</div>
+
 			<div class="project">   
 				<div class="preview">
 					<img src="assets/pong.jpg" width="400px" height="229px">
@@ -37,35 +115,6 @@
 						<br>
 						<br>(archived)
 						<br><a href="https://github.com/ethanwater/pong">repository</a>
-					</p>   
-				</div>
-			</div>
-
-			<div class="project">   
-				<div class="preview">
-					<img src="assets/vivian.jpg" width="400px"height="229px">
-				</div>
-				<p class="name">VIVIAN</p>
-				<div class="languages">
-					<p class="languageTag" style="color: #1e90ff;">•</p>
-					<p class="language">Go</p>
-					<p class="languageTag" style="color: yellow;">•</p>
-					<p class="language">JavaScript</p>
-					<p class="languageTag" style="color: red;">•</p>
-					<p class="language">Weaver</p>
-					<p class="languageTag" style="color: purple;">•</p>
-					<p class="language">HTML/CSS</p>
-				</div>
-				<div class="description">
-					<p> 
-						<br>Cloud-based application built to streamline
-						<br>live metrics and analyses of cloud deployments.
-						<br>Powered by Kubernetes and the ServiceWeaver
-						<br>web framework. I was inspired to do this after 
-						<br>being unsatisfied with the current tools out there.
-						<br>
-						<br>(in development)
-						<br><a href="https://github.com/ethanwater/vivian">repository</a>
 					</p>   
 				</div>
 			</div>
@@ -92,18 +141,45 @@
 					</p>   
 				</div>
 			</div>
+			
+
+
+			<div class="project">   
+				<div class="preview">
+					<img src="assets/organize.png" width="400px" height="229px">
+				</div>
+				<p class="name">ORGANIZE.GO</p>
+				<div class="languages">
+					<p class="languageTag" style="color: #1e90ff;">•</p>
+					<p class="language">Go</p>
+				</div>
+				<div class="description">
+					<p> 
+						<br>Safely organize and manage files in one click:
+						<br>it logs past actions, revert changes, 
+						<br>and tests the organization method. The code scans 
+						<br>directories, matches file extensions, and allows
+						<br>deep scanning for statistics and insights.
+						<br>
+						<br>(archived)
+						<br><a href="https://github.com/ethanwater/organize.go">repository</a>
+					</p>   
+				</div>
+
+			</div>
 		</div>
+
   </body>
 
 	<script>
-			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-			if (systemTheme.matches) {
-				document.body.style.backgroundColor = "black";
-				document.body.style.color = "white";
-			} else {
-				document.body.style.backgroundColor = "#DBCDB3";
-				document.body.style.color = "black";
-			}
+			//const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+			//if (systemTheme.matches) {
+			//	document.body.style.backgroundColor = "black";
+			//	document.body.style.color = "white";
+			//} else {
+			//	document.body.style.backgroundColor = "#DBCDB3";
+			//	document.body.style.color = "black";
+			//}
 			
 			const projects = document.getElementsByClassName("project");
 			const previews = document.getElementsByClassName("preview");
@@ -115,13 +191,15 @@
 
 			function focus(project, description, preview) {
 				preview.onmouseover = function () {
+					project.classList.add('centerElement');
     	    		for (let i = 0; i < projects.length; i++) {
     	      		  	if (projects[i] !== project) {
-    	        	    	projects[i].style.opacity = 0.5;
+    	        	    	projects[i].style.opacity = 0.25;
 						} else {
 							description.style.opacity = 1;
 							description.style.pointerEvents = "all";
 							project.style.transform = "scale(1.1)";
+							description.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 						}	
     	  	  		}
     			}
