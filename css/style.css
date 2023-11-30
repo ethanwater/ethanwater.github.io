@@ -12,6 +12,12 @@ a {
 	margin-left: 25%;
 }
 
+.about {
+	margin-top: 15%;
+	display: inline-block;
+	font-size: 20px;
+}
+
 a:hover {
 	color: lightgray;
 }
