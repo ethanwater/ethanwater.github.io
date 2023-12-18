@@ -23,7 +23,7 @@ a:hover {
 }
 
 .header {
-	position: sticky;
+	position: relative;
 	top: 0;
 	z-index: 999;
 }
@@ -35,7 +35,7 @@ a:hover {
 .title {
 	margin-top: 0%;
 	float: left;
-	width: 87%;
+	width: 90%;
 	font-size: 20px;
 }
 
@@ -53,7 +53,7 @@ ul.nav li {
 }
 
 .project {
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-bottom: 2.5%;
 	display: inline-block;
 	overflow: visible;
