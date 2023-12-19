@@ -63,9 +63,7 @@ ul.nav li {
 }
 
 .projects {
-	margin-left: 4%;
-	display: block;
-  width: 92%;
+	margin-left: -2.35%;
 	margin-top: 60px;
 }
 
@@ -73,7 +71,7 @@ ul.nav li {
 .project {
 	margin-top: 2%;
 	margin-bottom: 2.5%;
-	margin-right: 2.5%;
+	margin-left: 5%;
 	display: inline-block;
 	overflow: visible;
 	transition: 1s;
