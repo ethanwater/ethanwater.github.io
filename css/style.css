@@ -86,7 +86,6 @@ ul.nav li {
 
 }
 
-
 .project {
 	display: inline-block;
 	margin-top: 2%;
@@ -96,6 +95,13 @@ ul.nav li {
 	animation: fade-in 0.5s ease-in;
 	position: relative;
 	pointer-events: all;
+	transform: scale(1);
+}
+
+@media screen and (max-width: 600px) {
+	.project {
+		transform: scale(0.65);
+	}
 }
 
 .name {
