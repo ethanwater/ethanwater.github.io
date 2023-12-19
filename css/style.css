@@ -3,6 +3,7 @@ body {
 	background-color: black;
 	color: white;
 	margin-bottom: 80px;
+	overflow-y: hidden;
 }
 
 a {
@@ -13,20 +14,30 @@ a {
 	margin-left: 25%;
 }
 
-.about {
-	margin-top: 15%;
-	display: inline-block;
-	font-size: 20px;
-}
 
 a:hover {
 	color: lightgray;
 }
 
+ a:link {
+      text-decoration: none;
+}
+
+a:visited {
+      text-decoration: none;
+}
+
+a:hover {
+      text-decoration: none;
+}
+
+a:active {
+      text-decoration: none;
+}
+
 .header {
 	position: relative;
 	height: 24px;
-	overflow: visible;
 	top: 0;
 }
 
@@ -35,6 +46,7 @@ a:hover {
 }
 
 .header-right {
+	font-size: 14px;
 	float: right
 }
 
@@ -53,27 +65,33 @@ ul.nav {
 
 ul.nav li {
 	display: inline-block;
-	margin-left: 1%;
+	padding: 10px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 600px) {
 	ul.nav li {
 		display: flex;
 	}
 }
 
 .projects {
-	margin-left: -2.35%;
+	margin-left: -2.7%;
 	margin-top: 60px;
+}
+
+@media screen and (max-width: 600px) {
+	.projects {
+		margin-left: 0%;
+	}
+
 }
 
 
 .project {
+	display: inline-block;
 	margin-top: 2%;
 	margin-bottom: 2.5%;
 	margin-left: 5%;
-	display: inline-block;
-	overflow: visible;
 	transition: 1s;
 	animation: fade-in 0.5s ease-in;
 	position: relative;
