@@ -2,6 +2,7 @@ body {
 	font-family: "Roboto", sans-serif;
 	background-color: black;
 	color: white;
+	margin-bottom: 80px;
 }
 
 a {
@@ -24,8 +25,17 @@ a:hover {
 
 .header {
 	position: relative;
+	height: 24px;
+	overflow: visible;
 	top: 0;
-	z-index: 999;
+}
+
+.header-left {
+	float: left
+}
+
+.header-right {
+	float: right
 }
 
 .position {
@@ -34,8 +44,6 @@ a:hover {
 
 .title {
 	margin-top: 0%;
-	float: left;
-	width: 90%;
 	font-size: 20px;
 }
 
@@ -48,16 +56,26 @@ ul.nav li {
 	margin-left: 1%;
 }
 
-.projects {
-	margin-left: -2.35%;
+@media screen and (max-width: 760px) {
+	ul.nav li {
+		display: flex;
+	}
 }
+
+.projects {
+	margin-left: 4%;
+	display: block;
+  width: 92%;
+	margin-top: 60px;
+}
+
 
 .project {
 	margin-top: 2%;
 	margin-bottom: 2.5%;
+	margin-right: 2.5%;
 	display: inline-block;
 	overflow: visible;
-	margin-left: 5%;
 	transition: 1s;
 	animation: fade-in 0.5s ease-in;
 	position: relative;
