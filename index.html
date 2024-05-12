@@ -296,39 +296,58 @@
 		</div>
   </body>
 
-	<script>
-			const projects = document.getElementsByClassName("project");
-			const previews = document.getElementsByClassName("preview");
-			const descriptions = document.getElementsByClassName("description");
-			
-			for (let i = 0; i < projects.length; i++) {
-				focus(projects[i], descriptions[i], previews[i]);
-			}
+  <script>
+    const projects = document.getElementsByClassName("project");
+    const previews = document.getElementsByClassName("preview");
+    const descriptions = document.getElementsByClassName("description");
+	const background = document.getElementById("body");
 
-			function focus(project, description, preview) {
-				project.onmouseover = function () {
-    	    for (let i = 0; i < projects.length; i++) {
-    	      if (projects[i] !== project) {
-							projects[i].style.pointerEvents = "none";
-    	        projects[i].style.opacity = 0.25;
-						} else {
-							description.style.opacity = 1;
-							description.style.pointerEvents = "all";
-							project.style.transform = "scale(1.1)";
-						}	
-    	  	}
-    		}
-				
-				project.onmouseleave = function () {
-	    	 	for (let i = 0; i < projects.length; i++) {
- 	 	  	 	  projects[i].style.opacity = 1;
-						projects[i].style.pointerEvents = "all";
-						if (projects[i] == project) {
-							description.style.opacity = 0;
-							description.style.pointerEvents = "none";
-							project.style.transform = "scale(1)";
-						}
-    	 		}
-    		}	
+	
+	const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
+	darkmode(darkModeListener, background);	
+
+    for (let i = 0; i < projects.length; i++) {
+        focus(projects[i], descriptions[i], previews[i]);
+    }
+
+	function darkmode(darkModeListener, background) {
+		const links = document.getElementsByTagName("a");
+		const isDarkMode = darkModeListener.matches;
+
+		if (!isDarkMode) {
+			background.style.backgroundColor = "ghostwhite";
+			background.style.color = "black";
+
+			for (let i=0; i<links.length; i++) {
+				links[i].style.color = "black";
 			}
+		} 
+	}
+
+    function focus(project, description, preview) {
+        project.onmouseover = function () {
+            for (let i = 0; i < projects.length; i++) {
+                if (projects[i] !== project) {
+                    projects[i].style.pointerEvents = "none";
+                    projects[i].style.opacity = 0.25;
+                } else {
+                    description.style.opacity = 1;
+                    description.style.pointerEvents = "all";
+                    project.style.transform = "scale(1.1)";
+                }
+            }
+        }
+
+        project.onmouseleave = function () {
+            for (let i = 0; i < projects.length; i++) {
+                projects[i].style.opacity = 1;
+                projects[i].style.pointerEvents = "all";
+                if (projects[i] == project) {
+                    description.style.opacity = 0;
+                    description.style.pointerEvents = "none";
+                    project.style.transform = "scale(1)";
+                }
+            }
+        }
+    }
 	</script>
