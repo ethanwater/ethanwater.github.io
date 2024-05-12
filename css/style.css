@@ -75,7 +75,7 @@ ul.nav li {
 }
 
 .projects {
-	margin-left: 4%;
+	padding-left: 4%;
 	margin-top: 60px;
 }
 
@@ -90,10 +90,10 @@ ul.nav li {
 	display: inline-block;
 	margin-top: 2%;
 	margin-bottom: 2.5%;
-	margin-left: 5%;
+	padding-left: 5%;
 	transition: 1s;
 	animation: fade-in 0.5s ease-in;
-	position: relative;
+	position: static;
 	pointer-events: all;
 	transform: scale(1);
 }
