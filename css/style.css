@@ -11,7 +11,7 @@ a {
 }
 
 .resume {
-	margin-left: 25%;
+	margin-right: 20px;
 }
 
 
@@ -64,7 +64,7 @@ ul.nav {
 }
 
 ul.nav li {
-	display: inline-block;
+	display: inline;
 	padding: 10px;
 }
 
@@ -75,7 +75,7 @@ ul.nav li {
 }
 
 .projects {
-	margin-left: -2.7%;
+	margin-left: 4%;
 	margin-top: 60px;
 }
 
