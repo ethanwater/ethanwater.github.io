@@ -102,6 +102,7 @@ ul.nav li {
 @media (max-width: 992px) {
 	.projects {
 		justify-content: center;
+		margin-left: 17%;
 	}
 }
 
