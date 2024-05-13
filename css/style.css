@@ -94,7 +94,7 @@ ul.nav li {
 		transform: scale(0.65);
 	}
 	ul.nav li {
-		display: inline;
+		display: flex;
 	}
 	.projects {
 		justify-content: center;
