@@ -100,6 +100,9 @@ ul.nav li {
 		transform: scale(0.35);
 		margin-top: 15px;
 	}
+	body {
+		overflow-x: hidden;
+	}
 }
 
 @media (max-width: 992px) {
