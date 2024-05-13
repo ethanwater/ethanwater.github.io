@@ -285,10 +285,14 @@
 	const darkModeListener = window.matchMedia('(prefers-color-scheme: dark)');
 	darkmode(darkModeListener, background);	
 
-    for (let i = 0; i < projects.length; i++) {
-        focus(projects[i], descriptions[i], previews[i]);
-    }
+	console.log(window.innerWidth);
 
+	if (window.innerWidth > 992) {
+		for (let i = 0; i < projects.length; i++) {
+  	      focus(projects[i], descriptions[i], previews[i]);
+    	}
+	}
+    
 	function darkmode(darkModeListener, background) {
 		const links = document.getElementsByTagName("a");
 		const isDarkMode = darkModeListener.matches;
