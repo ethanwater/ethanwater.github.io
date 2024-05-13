@@ -96,8 +96,9 @@ ul.nav li {
 	ul.nav li {
 		display: flex;
 	}
-	.project {
+	.projects {
 		transform: scale(0.35);
+		margin-top: 15px;
 	}
 }
 
