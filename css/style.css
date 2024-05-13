@@ -87,12 +87,17 @@ ul.nav li {
 }
 
 @media (max-width: 768px) {
+	.header-left {
+		transform: scale(0.65);
+	}
+	.header-right {
+		transform: scale(0.65);
+	}
 	ul.nav li {
-		display: flex;
+		display: inline;
 	}
 	.projects {
-		align-self: center;
-		margin-left: 4%;
+		justify-content: center;
 	}
 	.project {
 		transform: scale(0.65);
