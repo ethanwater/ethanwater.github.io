@@ -12,7 +12,6 @@ body {
 #graph-container {
     flex: 2;
     background-color: #fcfcfc;
-    overflow: hidden;
     position: relative;
     height: 100%;
 }
@@ -105,6 +104,23 @@ h3 {
     letter-spacing: -0.5px;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+#mobile-message {
+    display: flex;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    text-wrap: true;
+}
+
+.mobile-mode #content-panel {
+    display: none;
+}
+
+.mobile-mode #graph-container {
+    flex: 1;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap');

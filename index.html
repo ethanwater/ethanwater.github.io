@@ -7,6 +7,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
         <link rel="stylesheet" href="css/index.css">
+        <script>
+            (function() {
+                function isMobile() {
+                    return window.innerWidth <= 768; // Adjust as needed
+                }
+                if (isMobile()) {
+                    document.documentElement.classList.add("mobile-mode");
+                }
+            })();
+        </script>
     </head>
     <body>
         <div id="graph-container">
@@ -18,7 +28,7 @@
             </div>
         </div>
         <div id="content-panel">
-            <h2 id="content-title">Select a node to read logs</h2>
+            <h2 id="content-title">select (or drag) a node</h2>
             <div id="content-body">...</div>
         </div>
 
