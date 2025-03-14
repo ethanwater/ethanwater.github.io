@@ -14,7 +14,6 @@ body {
     background-color: #fcfcfc;
     overflow: hidden;
     position: relative;
-    border-right: 1px solid #eeeeee;
     height: 100%;
 }
 
@@ -47,7 +46,6 @@ body {
 
 #content-title {
     margin-top: 0;
-    border-bottom: 1px solid #eeeeee;
     padding-bottom: 10px;
     color: #333333;
     font-weight: 300;
