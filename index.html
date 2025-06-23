@@ -1,37 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>metaspaces</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
-        <link rel="stylesheet" href="css/index.css">
-        <script>
-            (function() {
-                function isMobile() {
-                    return window.innerWidth <= 768; // Adjust as needed
-                }
-                if (isMobile()) {
-                    document.documentElement.classList.add("mobile-mode");
-                }
-            })();
-        </script>
-    </head>
-    <body>
-        <div id="graph-container">
-            <div id="title">ethanwater:: metaspaces</div>
-            <div id="controls">
-                <button id="zoom-in">+</button>
-                <button id="zoom-out">−</button>
-                <button id="site-theme">theme</button>
-            </div>
-        </div>
-        <div id="content-panel">
-            <h2 id="content-title">select (or drag) a node</h2>
-            <div id="content-body">...</div>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Node Graph</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        canvas {
+            display: block;
+            cursor: grab;
+        }
+        
+        canvas:active {
+            cursor: grabbing;
+        }
+        
+        .info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="info">Click and drag nodes to move them around</div>
 
-        <script src="js/index.min.js"></script>
-    </body>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const NODE_COUNT = 100;
+        
+        // Set canvas size immediately
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Node data similar to your D3 structure
+        class  XNode {
+            constructor(id) {
+                this.id = id;
+                this.size = 1
+                this.label = ""
+            }
+        }
+
+       const nodeData = [];
+       for (let i = 0; i < NODE_COUNT; i++) {
+            const cnode = new XNode(i,"dog");
+            nodeData.push({
+                id: cnode.id,
+                size: cnode.size,
+                label: cnode.label
+            });
+        } 
+        
+        // Generate random links with more realistic distribution
+        function generateRandomLinks() {
+            const links = [];
+            const totalNodes = nodeData.length;
+            
+            // Each node gets 0-3 connections, with some nodes having no connections
+            nodeData.forEach(node => {
+                const numConnections = Math.floor(Math.random() * 4); // 0-3 connections
+                
+                for (let i = 0; i < numConnections; i++) {
+                    const availableTargets = nodeData.filter(target => 
+                        target.id !== node.id && 
+                        !links.some(link => 
+                            (link.source === node.id && link.target === target.id) ||
+                            (link.source === target.id && link.target === node.id)
+                        )
+                    );
+                    
+                    if (availableTargets.length > 0) {
+                        const target = availableTargets[Math.floor(Math.random() * availableTargets.length)];
+                        links.push({ source: node.id, target: target.id });
+                    }
+                }
+            });
+            
+            return links;
+        }
+        
+        const links = generateRandomLinks();
+        
+        // Node class
+        class Node {
+            constructor(data) {
+                this.id = data.id;
+                this.label = data.label;
+                this.size = data.size;
+                this.radius = data.size;
+                this.hitRadius = Math.max(data.size + 10, 25); // Larger hit area
+                
+                // Random initial position
+                this.x = Math.random() * (canvas.width - 200) + 100;
+                this.y = Math.random() * (canvas.height - 200) + 100;
+                
+                // Physics properties
+                this.vx = 0;
+                this.vy = 0;
+                this.isDragging = false;
+                this.fx = null; // Fixed position when dragging
+                this.fy = null;
+            }
+            
+            draw() {
+                // Draw node circle - small, full white
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            isPointInside(x, y) {
+                const dx = x - this.x;
+                const dy = y - this.y;
+                return Math.sqrt(dx * dx + dy * dy) <= this.hitRadius;
+            }
+            
+            update() {
+                if (!this.isDragging) {
+
+                    
+                    // Apply link forces (attraction to connected nodes) - only if connected
+                    let hasConnections = false;
+                    links.forEach(link => {
+                        let target = null;
+                        if (link.source === this.id) {
+                            target = nodes.find(n => n.id === link.target);
+                            hasConnections = true;
+                        } else if (link.target === this.id) {
+                            target = nodes.find(n => n.id === link.source);
+                            hasConnections = true;
+                        }
+                        
+                        if (target) {
+                            const dx = target.x - this.x;
+                            const dy = target.y - this.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            const idealDistance = 100 + this.size + target.size; // Distance based on node sizes
+                            
+                            if (distance > 0) {
+                                const force = (distance - idealDistance) * 0.008;
+                                this.vx += (dx / distance) * force;
+                                this.vy += (dy / distance) * force;
+                            }
+                        }
+                    });
+                    
+                    // Weaker center force - let isolated nodes drift more
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const toCenterX = centerX - this.x;
+                    const toCenterY = centerY - this.y;
+                    const centerForce = hasConnections ? 0.00003 : 0.0001; // Weaker for isolated nodes
+                    this.vx += toCenterX * centerForce;
+                    this.vy += toCenterY * centerForce;
+                    
+                    // Apply velocity with damping
+                    this.vx *= 0.79;
+                    this.vy *= 0.79;
+                    
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    // Keep within bounds
+                    const margin = this.size + 20;
+                    if (this.x < margin) { this.x = margin; this.vx = 0; }
+                    if (this.x > canvas.width - margin) { this.x = canvas.width - margin; this.vx = 0; }
+                    if (this.y < margin) { this.y = margin; this.vy = 0; }
+                    if (this.y > canvas.height - margin) { this.y = canvas.height - margin; this.vy = 0; }
+                } else {
+                    nodes.forEach(other => {
+                        if (other !== this) {
+                            const dx = this.x - other.x;
+                            const dy = this.y - other.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            const minDistance = this.size + other.size + 30; // Minimum distance based on node sizes
+                            
+                            if (distance < minDistance * 2 && distance > 0) {
+                                const force = (minDistance * 400) / (distance * distance);
+                                this.vx += (dx / distance) * force;
+                                this.vy += (dy / distance) * force;
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        
+        // Create nodes
+        const nodes = nodeData.map(data => new Node(data));
+        
+        // Mouse handling
+        let isDragging = false;
+        let dragNode = null;
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        
+        canvas.addEventListener('mousedown', (e) => {
+            const pos = getMousePos(e);
+            mouseX = pos.x;
+            mouseY = pos.y;
+            
+            // Check if clicking on a node (check from smallest to largest for proper selection)
+            const sortedNodes = [...nodes].sort((a, b) => a.radius - b.radius);
+            for (let node of sortedNodes) {
+                if (node.isPointInside(mouseX, mouseY)) {
+                    isDragging = true;
+                    dragNode = node;
+                    node.isDragging = true;
+                    node.fx = node.x;
+                    node.fy = node.y;
+                    canvas.style.cursor = 'grabbing';
+                    break;
+                }
+            }
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            const pos = getMousePos(e);
+            mouseX = pos.x;
+            mouseY = pos.y;
+            
+            if (isDragging && dragNode) {
+                dragNode.x = mouseX;
+                dragNode.y = mouseY;
+                dragNode.vx = 0;
+                dragNode.vy = 0;
+            } else {
+                // Update cursor based on hover
+                let hovering = false;
+                for (let node of nodes) {
+                    if (node.isPointInside(mouseX, mouseY)) {
+                        hovering = true;
+                        break;
+                    }
+                }
+                canvas.style.cursor = hovering ? 'grab' : 'default';
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            if (dragNode) {
+                dragNode.isDragging = false;
+                dragNode.fx = null;
+                dragNode.fy = null;
+            }
+            isDragging = false;
+            dragNode = null;
+            canvas.style.cursor = 'default';
+        });
+        
+        // Touch events for mobile
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup', {});
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        // Draw connections
+        function drawConnections() {
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1;
+            
+            links.forEach(link => {
+                const sourceNode = nodes.find(n => n.id === link.source);
+                const targetNode = nodes.find(n => n.id === link.target);
+                
+                if (sourceNode && targetNode) {
+                    ctx.beginPath();
+                    ctx.moveTo(sourceNode.x, sourceNode.y);
+                    ctx.lineTo(targetNode.x, targetNode.y);
+                    ctx.stroke();
+                }
+            });
+        }
+        
+        // Animation loop
+        function animate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw connections first (behind nodes)
+            drawConnections();
+            
+            // Update and draw nodes
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+    </script>
+</body>
 </html>
