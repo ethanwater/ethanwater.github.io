@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Self-Coding Page with Centered Image</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body class="terminal">
@@ -25,7 +28,8 @@
 
       My style, as many claimed, was clear and forcible; but to me it seemed weak and obscure.<br><br>
 
-      For habit and play has almost the potency of <input type="text" class="blank" maxlength="6" placeholder="..."> itself.
+      For habit and play has almost the potency of <input type="text" class="blank" maxlength="6" placeholder="..." autofocus> itself.
+      <img src="plus175speed.gif" alt="Centered Image" width="25vw" height="25vw">
     </div>
   </main>
 
@@ -36,25 +40,20 @@
     const terminalImage = document.querySelector('.terminal-image');
 
     // escaped HTML to show in terminal
-    const source = `
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8" /&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-  &lt;title&gt;under construction&lt;/title&gt;
-  &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet"&gt;
-  &lt;link rel="stylesheet" type="text/css" href="index.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;main&gt;
-    &lt;div class="fade-in"&gt;
-      Youth and pleasure are vanity...
-      For habit and play has almost the potency of &lt;input type="text" class="blank" maxlength="6" placeholder="..."&gt; itself.
-    &lt;/div&gt;
-  &lt;/main&gt;
-&lt;/body&gt;
-&lt;/html&gt;`;
+    const source = [
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
+      { text: 'kiss', red: true },
+      { text: ' = "on_your_lovely_lips"; while(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: true },
+      { text: 'while(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: true },
+      { text: 'while(children.of_sin) { console.log("we are"); }', red: false },
+    ];
 
     function runAnimation() {
       terminal.innerHTML = "";
@@ -67,13 +66,16 @@
 
       // animate char by char
       let delay = 0;
-      source.split("").forEach(ch => {
-        const span = document.createElement('span');
-        span.textContent = ch;
-        span.style.animation = "fadeChar 0.02s forwards";
-        span.style.animationDelay = `${delay * 0.01}s`;
-        terminal.appendChild(span);
-        delay++;
+      source.forEach(segment => {
+        segment.text.split("").forEach(ch => {
+          const span = document.createElement('span');
+          span.textContent = ch;
+          if(segment.red) span.style.color = 'red';
+          span.style.animation = "fadeChar 0.02s forwards";
+          span.style.animationDelay = `${delay * 0.01}s`;
+          terminal.appendChild(span);
+          delay++;
+        });
       });
 
       const totalTime = delay * 10 + 2000;
