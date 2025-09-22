@@ -71,8 +71,10 @@ main {
 }
 
 .terminal-image img {
-  max-width: 600px;
-  max-height: 600px;
+  /* scales with viewport */
+  width: clamp(100px, 30vw, 300px);   /* min 100px, max 300px */
+  height: auto;                       /* maintain aspect ratio */
+  max-height: 50vh;                    /* don’t overflow vertically */
 }
 
 /* Final passage */
