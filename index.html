@@ -48,6 +48,27 @@
       { text: 'let lipstick_black = "smeared"; // calluses', red: false },
       { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
       { text: 'const kiss = "on_your_lovely_lips";', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
+      { text: 'kiss', red: true },
+      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
+      { text: 'kiss', red: true },
+      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
+      { text: 'kiss', red: true },
+      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
+      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: false },
     ];
 
     function runAnimation() {
@@ -58,10 +79,16 @@
       terminal.style.display = "block";
       terminal.style.opacity = "1";
       terminalImage.style.opacity = "1";
-
+    
+      // Determine which source array to use based on screen width
+      let sourceToUse = source;
+      if (window.innerWidth >= 1024) { // desktop breakpoint, adjust if needed
+        sourceToUse = source.slice(0, 7);
+      }
+    
       // animate char by char
       let delay = 0;
-      source.forEach(segment => {
+      sourceToUse.forEach(segment => {
         segment.text.split("").forEach(ch => {
           const span = document.createElement('span');
           span.textContent = ch;
@@ -72,7 +99,7 @@
           delay++;
         });
       });
-
+    
       const totalTime = delay * 8 + 2000;
       setTimeout(() => {
         terminal.style.opacity = "0";
@@ -86,8 +113,8 @@
         }, 1000);
       }, totalTime);
     }
-
+    
     window.addEventListener('load', runAnimation);
-  </script>
+    </script>
 </body>
 </html>
