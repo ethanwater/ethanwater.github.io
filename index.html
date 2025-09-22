@@ -44,15 +44,10 @@
       { text: 'let lipstick_black = "smeared"; // calluses', red: false },
       { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
       { text: 'kiss', red: true },
-      { text: ' = "on_your_lovely_lips"; while(children.of_sin) { console.log("we are"); }', red: false },
+      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
       { text: 'let lipstick_black = "smeared"; // calluses', red: false },
       { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: true },
-      { text: 'while(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: true },
-      { text: 'while(children.of_sin) { console.log("we are"); }', red: false },
+      { text: 'const kiss = "on_your_lovely_lips";', red: false },
     ];
 
     function runAnimation() {
@@ -78,7 +73,7 @@
         });
       });
 
-      const totalTime = delay * 10 + 2000;
+      const totalTime = delay * 8 + 2000;
       setTimeout(() => {
         terminal.style.opacity = "0";
         terminalImage.style.opacity = "0"; // fade out image with terminal
