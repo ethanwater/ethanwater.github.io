@@ -12,6 +12,7 @@ body {
   align-items: flex-start;
   transition: background 2s ease, color 2s ease;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body.terminal {
