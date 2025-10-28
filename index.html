@@ -1,120 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>anima tek</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Entries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .gif-container-start {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gif-container-end {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .gif-container-end.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .gif-placeholder {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .content {
+            padding-top: 280px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 100px;
+        }
+
+        .title {
+            margin-bottom: 60px;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .title p {
+            font-size: 24px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .entry {
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .entry iframe {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .entry.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .entry p {
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .entry-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        #effectCanvas {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+    </style>
 </head>
-<body class="terminal">
-  <main>
-    <!-- Terminal code -->
-    <div class="phase terminal-phase fade-in"></div>
-
-    <!-- Centered image -->
-    <div class="terminal-image">
-      <img src="plus175speed.gif" alt="Centered Image" width="200vw" height="200vw">
+<body>
+    <canvas id="effectCanvas"></canvas> 
+    <div class="gif-container-start">
+        <div class="title" id="title">
+            <p>a</p>
+            <p>critical</p>
+            <p>collapse</p>
+        </div>
+        <img src="images/shattered-heart.png" alt="shattered heart" width="320" height="180">
     </div>
 
-    <!-- Final passage -->
-    <div class="phase final-phase final-text">
-      Youth and pleasure are vanity .. and times permits us miserable mortals, puffed up with emptiness, thus to wander about, until finally, coming to a tardy consciousness of our sins, we shall learn to know ourselves.<br><br>
-
-      I have taken pride in others, never in myself, and however insignificant I may have been, I have always been still less important in my own judgment.<br><br>
-
-      My style, as many claimed, was clear and forcible; but to me it seemed weak and obscure.<br><br>
-
-      For habit and play has almost the potency of <input type="text" class="blank" maxlength="6" placeholder="..." autofocus> itself.
-      <img src="plus175speed.gif" alt="Centered Image" width="25vw" height="25vw">
+    <div class="content" id="content">
+        <!-- Entries will be loaded here -->
     </div>
-  </main>
 
-  <script>
-    const terminal = document.querySelector('.terminal-phase');
-    const finalText = document.querySelector('.final-phase');
-    const body = document.body;
-    const terminalImage = document.querySelector('.terminal-image');
+    <div class="gif-container-end">
+        <img src="images/heart.gif" alt="full heart" width="200" height="200">
+    </div>
 
-    // escaped HTML to show in terminal
-    const source = [
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: true },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-    ];
+    <script>
+        const canvas = document.getElementById('effectCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let currentEffect = 'snow';
 
-    function runAnimation() {
-      terminal.innerHTML = "";
-      body.classList.remove('clean');
-      body.classList.add('terminal');
-      finalText.classList.remove('show');
-      terminal.style.display = "block";
-      terminal.style.opacity = "1";
-      terminalImage.style.opacity = "1";
-    
-      // Determine which source array to use based on screen width
-      let sourceToUse = source;
-      if (window.innerWidth >= 1024) { // desktop breakpoint, adjust if needed
-        sourceToUse = source.slice(0, 7);
-      }
-    
-      // animate char by char
-      let delay = 0;
-      sourceToUse.forEach(segment => {
-        segment.text.split("").forEach(ch => {
-          const span = document.createElement('span');
-          span.textContent = ch;
-          if(segment.red) span.style.color = 'red';
-          span.style.animation = "fadeChar 0.02s forwards";
-          span.style.animationDelay = `${delay * 0.01}s`;
-          terminal.appendChild(span);
-          delay++;
-        });
-      });
-    
-      const totalTime = delay * 8 + 2000;
-      setTimeout(() => {
-        terminal.style.opacity = "0";
-        terminalImage.style.opacity = "0"; // fade out image with terminal
-        setTimeout(() => {
-          terminal.style.display = "none";
-          terminalImage.style.display = "none";
-          body.classList.remove('terminal');
-          body.classList.add('clean');
-          finalText.classList.add('show');
-        }, 1000);
-      }, totalTime);
-    }
-    
-    window.addEventListener('load', runAnimation);
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function createParticles(effect) {
+          particles = [];
+          for (let i = 0; i < 150; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              r: Math.random() * 3 + 1,
+              speed: Math.random() * 2 + 1,
+              color: effect === 'snow' ? 'red' : 'rgba(255, 0, 0, 0.8)'
+            });
+          }
+        }
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            p.y += p.speed;
+            if (p.y > canvas.height) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+          });
+          requestAnimationFrame(animate);
+        }
+        createParticles('snow');
+        animate();
+
+        // Load entries from local folder using fetch
+        async function loadEntries() {
+            const contentDiv = document.getElementById('content');
+            let index = 1;
+            
+            while (true) {
+                try {
+                    // Try to read files named 1.txt, 2.txt, 3.txt, etc.
+                    const response = await fetch(`entries/${index}.txt`);
+                    
+                    if (!response.ok) {
+                        // No more files to read
+                        console.log(`Loaded ${index - 1} entries`);
+                        break;
+                    }
+                    
+                    const content = await response.text();
+                    
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'entry';
+                    switch (index) {
+                        case 7: entryDiv.innerHTML = `
+                                <img src="images/rainbow.jpg" alt="Entry 7 image" class="entry-image">
+                                <p>${content}</p>
+                            `;
+                            break;
+                        case 21: entryDiv.innerHTML = `
+                                <img src="images/nomoreswings.jpg" alt="Entry 21 image" class="entry-image">
+                                <p>${content}</p>
+                            `;
+                            break;
+                       case 29: entryDiv.innerHTML = `
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/sIc_2UEWNns?si=YRxelTiQ1-OTg50k&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <p>${content}</p> 
+                            `;
+                            break;
+                       default:
+                            entryDiv.innerHTML = `
+                                <p>${content}</p>
+                            `;
+                            break;
+                    }
+                    contentDiv.appendChild(entryDiv);
+                    index++;
+                } catch (error) {
+                    // No more files to read
+                    console.log(`Loaded ${index - 1} entries`);
+                    break;
+                }
+            }
+            
+            // Initialize scroll reveal after entries are loaded
+            revealOnScroll();
+        }
+
+        // Scroll reveal functionality
+        function revealOnScroll() {
+            const entries = document.querySelectorAll('.entry');
+            const gifEnd = document.querySelector('.gif-container-end');
+            const windowHeight = window.innerHeight;
+        
+            let allVisible = true;
+        
+            entries.forEach(entry => {
+                const entryTop = entry.getBoundingClientRect().top;
+                const revealPoint = windowHeight * 0.75;
+            
+                if (entryTop < revealPoint) {
+                    entry.classList.add('visible');
+                }
+            
+                if (!entry.classList.contains('visible')) {
+                    allVisible = false;
+                }
+            });
+        
+            // Show the bottom GIF only if all entries are visible
+            if (allVisible && gifEnd) {
+                gifEnd.classList.add('visible');
+            }
+        }
+
+
+        // Load entries on page load
+        window.addEventListener('load', loadEntries);
+        window.addEventListener('scroll', revealOnScroll);
     </script>
 </body>
 </html>
