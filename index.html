@@ -100,7 +100,7 @@
     .matrix-cell {
       width: 100%;
       height: 100%;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       overflow: hidden;
     }
     .matrix-cell.text-cell {
@@ -116,6 +116,8 @@
       overflow-y: auto;
       grid-column: span 2;
       grid-row: span 2;
+      background-color: black;
+      color: white;
     }
     .matrix-cell.text-cell-small {
       padding: 2rem;
@@ -126,10 +128,11 @@
       text-align: left;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       overflow-y: auto;
       grid-column: span 1;
       grid-row: span 2;
+      background-color: black;
+      color: white;
     }
     .matrix-cell.image-cell {
       padding: 0;
@@ -144,9 +147,12 @@
       object-fit: cover;
       display: block;
     }
+    .no-wrap {
+      white-space: nowrap;
+    }
     .blank {
       border: none;
-      border-bottom: 1px solid #cccccc;
+      border-bottom: 1px solid white;
       background: transparent;
       color: green;
       font-family: 'Inter', sans-serif;
@@ -159,6 +165,7 @@
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       letter-spacing: 0.05em;
       position: relative;
+      display: inline-block;
     }
     .blank::placeholder {
       color: #999999;
@@ -167,7 +174,7 @@
     }
     .blank:focus {
       outline: none;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid white;
       transform: translateY(-1px);
     }
     .blank:focus::placeholder {
@@ -205,7 +212,8 @@
 
         My style, as many claimed, was clear and forcible; but to me it seemed weak and obscure.<br><br>
 
-        For habit and play has almost the potency of <input type="text" class="blank" maxlength="6" placeholder="..." autofocus> itself.
+        <p class="no-wrap">For habit and play has almost the potency of <input type="text" class="blank" maxlength="6"
+                                                                                                         placeholder="..." autofocus> itself.</p>
       </div>
 
       <!-- Image Cells -->
@@ -229,11 +237,14 @@
       </div>
 
       <div class="matrix-cell text-cell-small">
-        christmas list:<br>
-        1. vodka<br>
-        2. better medication, cheaper medication<br>
-        3. $1,000,000<br>
-        4. logic pro x
+        essential todo: <br>
+        1. more motion<br>
+        2. better mental; see color<br>
+        3. make more money ( $1,000,000 )<br>
+        4. write more songs<br>
+        5. exercise often (don't forget the sauna)<br>
+        <br>
+        infiltrate culture.
       </div>
 
       <div class="matrix-cell image-cell">
