@@ -108,7 +108,7 @@ main {
   background-color: black;
   color: white;
 }
-.matrix-cell.text-cell-small {
+.matrix-cell.text-cell-med {
   padding: 2rem;
   font-size: clamp(12px, 1.5vw, 16px);
   letter-spacing: 0.02em;
@@ -120,6 +120,21 @@ main {
   overflow-y: auto;
   grid-column: span 1;
   grid-row: span 2;
+  background-color: black;
+  color: white;
+}
+.matrix-cell.text-cell-small {
+  padding: 2rem;
+  font-size: clamp(12px, 1.5vw, 16px);
+  letter-spacing: 0.02em;
+  font-weight: 100;
+  line-height: 1.4;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  grid-column: span 1;
+  grid-row: span 1;
   background-color: black;
   color: white;
 }
