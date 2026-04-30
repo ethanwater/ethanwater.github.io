@@ -1,202 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pixelthot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e2dc;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ede8e3;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Soft blurred orbs */
+  .orb1 {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(180,155,200,0.28) 0%, transparent 70%);
+    top: -80px; right: -60px;
+    pointer-events: none;
+  }
+  .orb2 {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160,185,210,0.22) 0%, transparent 70%);
+    bottom: 200px; left: -80px;
+    pointer-events: none;
+  }
+  .orb3 {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,175,155,0.2) 0%, transparent 70%);
+    bottom: 80px; right: 100px;
+    pointer-events: none;
+  }
+
+  /* Header */
+  .header {
+    position: relative;
+    z-index: 1;
+    padding: 56px 60px 0;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #9a8fa0;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+
+  .title-block {
+    margin-bottom: 36px;
+  }
+
+  .title-small {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #a09098;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 88px;
+    font-weight: 300;
+    line-height: 0.88;
+    color: #2d2530;
+    letter-spacing: -0.02em;
+  }
+
+  .title .italic {
+    font-style: italic;
+    font-weight: 300;
+    color: #7a6585;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 300;
+    color: #7a6585;
+    margin-top: 18px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Thin divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c4b8cc 30%, #b8c4cc 70%, transparent);
+    margin: 36px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Concept */
+  .concept {
+    position: relative;
+    z-index: 1;
+    padding: 0 60px;
+    margin-bottom: 44px;
+  }
+
+  .concept p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #4a3f52;
+    max-width: 560px;
+  }
+
+  /* Pillars */
+  .pillars-wrap {
+    position: relative;
+    z-index: 1;
+    padding: 0 60px;
+    margin-bottom: 44px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #a09098;
+    margin-bottom: 22px;
+    font-weight: 400;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.45);
+    border: 1px solid rgba(180,165,195,0.3);
+    border-radius: 2px;
+    padding: 24px 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    font-style: italic;
+    color: #c4b8cc;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .pillar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d2530;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .pillar-desc {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #7a7085;
+    font-weight: 300;
+  }
+
+  /* Benefits */
+  .benefits-wrap {
+    position: relative;
+    z-index: 1;
+    padding: 0 60px;
+    margin-bottom: 44px;
+  }
+
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(180,165,195,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .benefit {
+    padding: 20px 22px;
+    background: rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(180,165,195,0.25);
+    border-bottom: 1px solid rgba(180,165,195,0.25);
+  }
+
+  .benefit:nth-child(2), .benefit:nth-child(4) { border-right: none; }
+  .benefit:nth-child(3), .benefit:nth-child(4) { border-bottom: none; }
+
+  .benefit-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d2530;
+    margin-bottom: 5px;
+  }
+
+  .benefit-desc {
+    font-size: 12px;
+    color: #7a7085;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Stats */
+  .stats-wrap {
+    position: relative;
+    z-index: 1;
+    padding: 0 60px;
+    margin-bottom: 52px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 0 24px 0 0;
+    border-right: 1px solid rgba(180,165,195,0.35);
+  }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+  .stat:not(:first-child):not(:last-child) { padding-left: 24px; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    font-style: italic;
+    color: #7a6585;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: #a09098;
+    line-height: 1.4;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  .footer {
+    position: relative;
+    z-index: 1;
+    padding: 28px 60px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(180,165,195,0.3);
+  }
+
+  .cta-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #a09098;
+    margin-bottom: 8px;
+  }
+
+  .cta-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: #2d2530;
+    line-height: 1.3;
+  }
+
+  .contact {
+    text-align: right;
+  }
+
+  .contact-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #2d2530;
+    margin-bottom: 4px;
+  }
+
+  .contact-detail {
+    font-size: 11px;
+    color: #a09098;
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+    text-transform: uppercase;
+  }
+</style>
 </head>
-<body class="terminal">
-  <main>
-    <div class="phase terminal-phase fade-in"></div>
-    <div class="terminal-image"></div>
+<body>
+<div class="page">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="orb3"></div>
 
-    <div class="phase final-phase">
-      <div class="matrix-cell text-cell">
-        Youth and pleasure are vanity .. and times permits us miserable mortals, puffed up with emptiness, thus to wander about, until finally, coming to a tardy consciousness of our sins, we shall learn to know ourselves.<br><br>
+  <div class="header">
+    <div class="eyebrow">Vanderbilt University &nbsp;-&nbsp; Chelsea Campus &nbsp;-&nbsp; New York City</div>
+    <div class="title-block">
+      <div class="title-small">A proposal for</div>
+      <div class="title">The<br><span class="italic">Living</span><br>Gallery</div>
+      <div class="tagline">Art, conversation, and music - woven into campus life.</div>
+    </div>
+  </div>
 
-        I have taken pride in others, never in myself, and however insignificant I may have been, I have always been still less important in my own judgment.<br><br>
+  <div class="divider"></div>
 
-        My style, as many claimed, was clear and forcible; but to me it seemed weak and obscure.<br><br>
+  <div class="concept">
+    <p>Chelsea is the center of the American art world. This program turns that geography into a living asset - rotating exhibitions, artist-led discourse, and intimate performance, anchoring Vanderbilt as a cultural presence the neighborhood actually wants.</p>
+  </div>
 
-        <p class="no-wrap">For habit and play has almost the potency of <input type="text" class="blank" maxlength="6"
-                                                                                                         placeholder="..." autofocus> itself.</p>
+  <div class="pillars-wrap">
+    <div class="section-label">Three streams</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">I</div>
+        <div class="pillar-name">Rotating Exhibition</div>
+        <p class="pillar-desc">Works from neighboring galleries cycling through campus every 6-8 weeks. A gallery that never stays still.</p>
       </div>
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/heartbreak-os.mov" alt="Heartbreak OS">
+      <div class="pillar">
+        <div class="pillar-num">II</div>
+        <div class="pillar-name">Culture Talks</div>
+        <p class="pillar-desc">Creatives, curators, critics - in real conversation. Cross-disciplinary, community-facing, intellectually alive.</p>
       </div>
-      <div class="matrix-cell text-cell-med live-feed">
-        <div class="feed-container">
-          <div class="feed-item">randomness compromised</div>
-          <div class="feed-item">white noise over streams</div>
-          <div class="feed-item">digital replication of a dream</div>
-          <div class="feed-item">nostalgia</div>
-
-          <div class="feed-item"></div>
-          <div class="feed-item"></div>
-
-          <div class="feed-item">avoidance of responsibility</div>
-          <div class="feed-item">slipping, nothing in place</div>
-          <div class="feed-item">an observatory for mirages</div>
-          <div class="feed-item">fleeting</div>
-
-          <div class="feed-item"></div>
-          <div class="feed-item"></div>
-
-          <div class="feed-item">over the counter drugs</div>
-          <div class="feed-item">artifical therapies</div>
-          <div class="feed-item">selfless rejection</div>
-          <div class="feed-item">cyclical</div>
-
-          <div class="feed-item"></div>
-          <div class="feed-item"></div>
-
-          <div class="feed-item">fearing what is not understood</div>
-          <div class="feed-item">energy for anothers space</div>
-          <div class="feed-item">catatonic chambers of the soul</div>
-          <div class="feed-item">entrapped</div>
-
-          <div class="feed-item"></div>
-          <div class="feed-item"></div>
-
-          <div class="feed-item">memories of the good years</div>
-          <div class="feed-item">a frame stolen by time</div>
-          <div class="feed-item">the echo of a younger voice</div>
-          <div class="feed-item">potential</div>
-
-          <div class="feed-item"></div>
-          <div class="feed-item"></div>
-
-          <div class="feed-item">randomness predicted</div>
-          <div class="feed-item">randomness rejected</div>
-          <div class="feed-item">randomness compromised</div>
-        </div>
-      </div>
-
-
-
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/popup.mov" alt="Popup">
-      </div>
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/neura.png" alt="Neura">
-      </div>
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/red_dunes.png" alt="Red Dunes">
-      </div>
-      <div class="matrix-cell text-cell-small">
-        <b>TODO</b>
-        1. medication<br>
-        2. eat well<br>
-        3. music<br>
-        4. play<br>
-        5. think<br>
-      </div>
-
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/broken.png" alt="Heart">
-      </div>
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/music.png" alt="Heartbreak OS">
-      </div>
-      <div class="matrix-cell image-cell-big">
-        <img src="dopewebshit/desktop.png" alt="Heart">
-      </div>
-      <div class="matrix-cell image-cell">
-        <img src="dopewebshit/me.png" alt="me">
-      </div>
-      <div class="matrix-cell image-cell-big">
-        <img src="dopewebshit/soulgraph.svg" alt="Heart">
+      <div class="pillar">
+        <div class="pillar-num">III</div>
+        <div class="pillar-name">Live Performance</div>
+        <p class="pillar-desc">Chamber, jazz, contemporary. Intimate and carefully chosen - a venue with genuine character.</p>
       </div>
     </div>
-    
-    <img src="dopewebshit/plus175speed.gif" alt="Animated gif" class="sticky-bottom-right">
-  </main>
+  </div>
 
-  <script>
-    const terminal = document.querySelector('.terminal-phase');
-    const finalPhase = document.querySelector('.final-phase');
-    const body = document.body;
-    const terminalImage = document.querySelector('.terminal-image');
+  <div class="benefits-wrap">
+    <div class="section-label">What it delivers</div>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-title">Local Credibility</div>
+        <p class="benefit-desc">Vanderbilt as a member of Chelsea's cultural life, not a tenant of it.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-title">Elevated Events</div>
+        <p class="benefit-desc">Every donor reception and alumni evening set against a living exhibition.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-title">Community Reach</div>
+        <p class="benefit-desc">Programming that draws the arts world onto campus and builds lasting ties.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-title">Zero Overhead</div>
+        <p class="benefit-desc">All curation, logistics, and production managed end-to-end by the proposer.</p>
+      </div>
+    </div>
+  </div>
 
-    // escaped HTML to show in terminal
-    const source = [
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: true },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); } const ', red: false },
-      { text: 'kiss', red: false },
-      { text: ' = "on_your_lovely_lips"; while..(children.of_sin) { console.log("we are"); }', red: false },
-      { text: 'let lipstick_black = "smeared"; // calluses', red: false },
-      { text: 'if (eyes.slurred) { alert("feeling sick"); }', red: false },
-      { text: 'const kiss = "on_your_lovely_lips";', red: false },
-    ];
+  <div class="stats-wrap">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">6-8</div>
+        <div class="stat-label">Week rotation</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Gallery partners</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">60</div>
+        <div class="stat-label">Days to launch</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Zero</div>
+        <div class="stat-label">Admin burden to VU</div>
+      </div>
+    </div>
+  </div>
 
-    function runAnimation() {
-      terminal.innerHTML = "";
-      body.classList.remove('clean');
-      body.classList.add('terminal');
-      finalPhase.classList.remove('show');
-      terminal.style.display = "block";
-      terminal.style.opacity = "1";
-      terminalImage.style.opacity = "1";
-    
-      let sourceToUse = source;
-      if (window.innerWidth >= 1024) {
-        sourceToUse = source.slice(0, 7);
-      }
-    
-      let delay = 0;
-      sourceToUse.forEach(segment => {
-        segment.text.split("").forEach(ch => {
-          const span = document.createElement('span');
-          span.textContent = ch;
-          if(segment.red) span.style.color = 'red';
-          span.style.animation = "fadeChar 0.02s forwards";
-          span.style.animationDelay = `${delay * 0.01}s`;
-          terminal.appendChild(span);
-          delay++;
-        });
-      });
-    
-      const totalTime = delay * 8 + 2000;
-      setTimeout(() => {
-        terminal.style.opacity = "0";
-        terminalImage.style.opacity = "0";
-        setTimeout(() => {
-          terminal.style.display = "none";
-          terminalImage.style.display = "none";
-          body.classList.remove('terminal');
-          body.classList.add('clean');
-          finalPhase.classList.add('show');
-        }, 1000);
-      }, totalTime);
-    }
-    
-    window.addEventListener('load', runAnimation);
-  </script>
+  <div class="footer">
+    <div>
+      <div class="cta-eyebrow">Next step</div>
+      <div class="cta-text">20 minutes to explore the fit.</div>
+    </div>
+    <div class="contact">
+      <div class="contact-name">Ethan Water</div>
+      <div class="contact-detail">Curator & Proposer<br>New York City</div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
